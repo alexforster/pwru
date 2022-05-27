@@ -157,7 +157,7 @@ func main() {
 		}
 	}()
 
-	log.Println("Listening for events..")
+	log.Println("Listening for events...")
 
 	output := pwru.NewOutput(&flags, printSkbMap, printStackMap, addr2name)
 	output.PrintHeader()
@@ -165,9 +165,9 @@ func main() {
 	defer func() {
 		select {
 		case <-ctx.Done():
-			log.Println("Received signal, exiting program..")
+			log.Println("Received exit signal, detaching kprobes...")
 		default:
-			log.Printf("Printed %d events, exiting program..\n", flags.OutputLimitLines)
+			log.Printf("Printed %d events, detaching kprobes...\n", flags.OutputLimitLines)
 		}
 	}()
 
