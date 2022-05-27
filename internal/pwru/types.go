@@ -32,7 +32,7 @@ type Flags struct {
 	OutputStack      bool
 	OutputLimitLines uint64
 
-	PerCPUBuffer	int
+	PerCPUBuffer int
 }
 
 func (f *Flags) SetFlags() {
@@ -79,6 +79,7 @@ type StackData struct {
 }
 
 type Event struct {
+	CPU          uint32
 	PID          uint32
 	Type         uint32
 	Addr         uint64

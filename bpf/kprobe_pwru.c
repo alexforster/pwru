@@ -44,6 +44,7 @@ struct tuple {
 u64 print_skb_id = 0;
 
 struct event_t {
+	u32 cpu;
 	u32 pid;
 	u32 type;
 	u64 addr;
@@ -369,6 +370,7 @@ handle_everything(struct sk_buff *skb, struct pt_regs *ctx) {
 		set_output(ctx, skb, &event, cfg);
 	}
 
+	event.cpu = bpf_get_smp_processor_id();
 	event.pid = bpf_get_current_pid_tgid();
 	event.addr = PT_REGS_IP(ctx);
 	event.skb_addr = (u64) skb;
